@@ -1,8 +1,161 @@
 <!DOCTYPE html>
-<head>
+<html style="height:90%">
 
+<head>
+    <style>
+        body {
+            background-color: rgb(72, 72, 72);
+            height: 100%
+        }
+
+        h1 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 5vw;
+            justify-self: center;
+        }
+
+        p {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+            justify-self: center;
+            margin: 5%;
+        }
+
+        .allSliderContainerDiv {
+            background-color: darkgrey;
+            border-radius: 20px;
+            width: 75%;
+            height: 80%;
+            justify-self: center;
+            justify-content: center;
+        }
+
+        .rgbSliderContainerDiv {
+            background-color: darkgrey;
+            border-radius: 20px;
+            width: 75%;
+            height: 80%;
+            justify-self: center;
+            justify-content: center;
+            display: flex;
+
+        }
+
+        .sliderDiv {
+            background-color: grey;
+            border-radius: 20px;
+            display: inline-block;
+            width: 30%;
+            height: 75%;
+            margin: 5%;
+            margin-top: 2%;
+            margin-bottom: 2%;
+            justify-content: center;
+            text-align: center;
+        }
+
+
+        .sliderTrack {
+            width: 80%;
+            height: 90%;
+            margin: 5%;
+        }
+
+        .brightnessSlider {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 80%;
+            height: 5%;
+            transform-origin: 50%;
+            margin: 5%;
+            background: #d3d3d3;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+        }
+
+        .rgbSlider {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 60%;
+            height: 80%;
+            writing-mode: vertical-lr;
+            direction: rtl;
+            transform-origin: 50%;
+            margin: 5%;
+            background: #d3d3d3;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+        }
+
+        .slider:hover {
+            opacity: 1;
+        }
+
+        .rgbSlider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            background: black;
+            cursor: pointer;
+        }
+
+        .brightnessSlider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            background: #04AA6D;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>I did it?</h1>
+    <h1>R G and B</h1>
+    <div class="allSliderContainerDiv">
+        <div class="rgbSliderContainerDiv">
+            <div class="sliderDiv">
+                <input type="range" min="0" max="100" value="50" class="rgbSlider" id="red">
+                <p id="redout"></p>
+            </div>
+            <div class="sliderDiv">
+                <input type="range" min="0" max="100" value="50" class="rgbSlider" id="green">
+                <p id="greenout"></p>
+            </div>
+            <div class="sliderDiv">
+                <input type="range" min="0" max="100" value="50" class="rgbSlider" id="blue">
+                <p id="blueout"></p>
+            </div>
+        </div>
+        <!-- <input type="range" min="0" max="100" value="0" class="brightnessSlider" id="brightness">
+        <p id="brightnessout"></p> -->
+    </div>
+
 </body>
+<script>
+    let redslider = document.getElementById("red");
+    let redout = document.getElementById("redout");
+    redout.innerText = redslider.value + "%";
+    redslider.oninput = function () {
+        redout.innerText = this.value + "%";
+    }
+    let greenslider = document.getElementById("green");
+    let greenout = document.getElementById("greenout");
+    greenout.innerText = greenslider.value + "%";
+    greenslider.oninput = function () {
+        greenout.innerText = this.value + "%";
+    }
+    let blueslider = document.getElementById("blue");
+    let blueout = document.getElementById("blueout");
+    blueout.innerText = blueslider.value + "%";
+    blueslider.oninput = function () {
+        blueout.innerText = this.value + "%";
+    }
+</script>
+
+</html>
