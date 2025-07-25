@@ -1,10 +1,19 @@
 <!DOCTYPE html>
-<html style="height:90%">
+<html style="height:95%">
 
 <head>
     <style>
+        :root {
+            --background: rgb(72, 72, 72);
+            --panel: darkgrey;
+            --item: grey;
+            --sliderTrack: rgb(151, 151, 151);
+            --sliderThumb: rgb(33, 33, 33);
+            --buttonHover: rgb(59, 59, 59);
+        }
+
         body {
-            background-color: rgb(72, 72, 72);
+            background-color: var(--background);
             height: 100%
         }
 
@@ -18,144 +27,301 @@
             font-family: Arial, Helvetica, sans-serif;
             font-size: 20px;
             justify-self: center;
-            margin: 5%;
+            margin: 1%;
+
+            user-select: none;
+        }
+
+        input {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 95%;
+            height: 25px;
+            background: var(--sliderTrack);
+            outline: none;
+            opacity: 0.5;
+            transition: opacity .2s;
+        }
+
+        input:hover {
+            opacity: 1;
         }
 
         .allSliderContainerDiv {
-            background-color: darkgrey;
-            border-radius: 20px;
-            width: 75%;
-            height: 80%;
+            background-color: var(--panel);
+            border-radius: 20px 20px 0px 0px;
+            width: 100%;
+            height: 100%;
             justify-self: center;
             justify-content: center;
         }
 
         .rgbSliderContainerDiv {
-            background-color: darkgrey;
-            border-radius: 20px;
-            width: 75%;
-            height: 80%;
+            width: 100%;
+            height: 75%;
             justify-self: center;
             justify-content: center;
             display: flex;
 
         }
 
-        .sliderDiv {
-            background-color: grey;
+        .rgbSliderDiv {
+            background-color: var(--item);
             border-radius: 20px;
             display: inline-block;
-            width: 30%;
-            height: 75%;
+            width: 25%;
+            min-width: 35px;
+            height: 99%;
             margin: 5%;
-            margin-top: 2%;
-            margin-bottom: 2%;
+            margin-bottom: 1%;
+            margin-top: 1%;
             justify-content: center;
             text-align: center;
         }
 
-
-        .sliderTrack {
-            width: 80%;
-            height: 90%;
-            margin: 5%;
-        }
-
-        .brightnessSlider {
-            appearance: none;
-            -webkit-appearance: none;
-            width: 80%;
-            height: 5%;
-            transform-origin: 50%;
-            margin: 5%;
-            background: #d3d3d3;
-            outline: none;
-            opacity: 0.7;
-            -webkit-transition: .2s;
-            transition: opacity .2s;
+        .brightnessSliderDiv {
+            background-color: var(--item);
+            display: flex;
+            border-radius: 20px;
+            width: 95%;
+            height: 10%;
+            min-height: 35px;
+            margin-top: 1%;
+            margin-bottom: 0%;
+            justify-self: center;
+            justify-content: center;
+            align-items: center;
         }
 
         .rgbSlider {
-            appearance: none;
-            -webkit-appearance: none;
-            width: 60%;
-            height: 80%;
+            width: 25px;
+            height: 95%;
             writing-mode: vertical-lr;
             direction: rtl;
-            transform-origin: 50%;
-            margin: 5%;
-            background: #d3d3d3;
-            outline: none;
-            opacity: 0.7;
-            -webkit-transition: .2s;
-            transition: opacity .2s;
-        }
-
-        .slider:hover {
-            opacity: 1;
         }
 
         .rgbSlider::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
-            width: 100px;
+            width: 50px;
             height: 100px;
-            background: black;
+            background: var(--sliderThumb);
             cursor: pointer;
         }
 
         .brightnessSlider::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
-            width: 25px;
-            height: 25px;
-            background: #04AA6D;
+            width: 100px;
+            height: 50px;
+            background: var(--sliderThumb);
             cursor: pointer;
+        }
+
+        .brightnessValueContainer {
+            background-color: var(--item);
+            display: flex;
+            border-radius: 0px 0px 20px 20px;
+            width: 30%;
+            height: 50px;
+            margin: 0%;
+            margin-top: 0px;
+            margin-bottom: 0%;
+            justify-self: center;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modeButtonContainer {
+            display: grid;
+            margin: 1%;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            justify-self: center;
+            width: 100%;
+            height: 8%
+        }
+
+        .modeButton {
+            background-color: var(--item);
+            border-radius: 20px;
+            display: inline-block;
+            margin: auto;
+            width: 95%;
+            height: 90%;
+            text-align: center;
+            transition: .2s;
+        }
+
+        .modeButton:hover {
+            background-color: var(--buttonHover);
+        }
+
+        .underPanelButtonContainer {
+            display: inline-flex;
+            justify-content: center;
+            justify-self: center;
+            width: 100%;
+            height: 5%
+        }
+
+        .underPanelButton {
+            background-color: var(--item);
+            border-radius: 0px 0px 20px 20px;
+            display: inline-block;
+            width: 33.33%;
+            height: 95%;
+            margin: 0%;
+            justify-content: center;
+            transition: .2s;
         }
     </style>
 </head>
 
 <body>
-    <h1>R G and B</h1>
-    <div class="allSliderContainerDiv">
-        <div class="rgbSliderContainerDiv">
-            <div class="sliderDiv">
-                <input type="range" min="0" max="100" value="50" class="rgbSlider" id="red">
-                <p id="redout"></p>
+    <div style="width: 100%; height: 99%; justify-self: center;">
+        <div class="allSliderContainerDiv">
+            <div class="rgbSliderContainerDiv">
+                <div class="rgbSliderDiv">
+                    <input type="range" min="0" max="100" value="50" class="rgbSlider" id="redSlider">
+                    <p id="redOut"></p>
+                </div>
+                <div class="rgbSliderDiv">
+                    <input type="range" min="0" max="100" value="50" class="rgbSlider" id="greenSlider">
+                    <p id="greenOut"></p>
+                </div>
+                <div class="rgbSliderDiv">
+                    <input type="range" min="0" max="100" value="50" class="rgbSlider" id="blueSlider">
+                    <p id="blueOut"></p>
+                </div>
             </div>
-            <div class="sliderDiv">
-                <input type="range" min="0" max="100" value="50" class="rgbSlider" id="green">
-                <p id="greenout"></p>
+            <div class="brightnessSliderDiv">
+                <input type="range" min="0" max="100" value="0" class="brightnessSlider" id="brightnessSlider">
             </div>
-            <div class="sliderDiv">
-                <input type="range" min="0" max="100" value="50" class="rgbSlider" id="blue">
-                <p id="blueout"></p>
+            <div class="brightnessValueContainer">
+                <p id="brightnessOut"></p>
+            </div>
+            <div class="modeButtonContainer">
+                <div class="modeButton" id="modeSolid">
+                    <p>Solid</p>
+                </div>
+                <div class="modeButton" id="modeAura">
+                    <p>Aura</p>
+                </div>
+                <div class="modeButton" id="modeMoving">
+                    <p>Moving</p>
+                </div>
+                <div class="modeButton">
+                    <p>Another</p>
+                </div>
+                <div class="modeButton">
+                    <p>Another</p>
+                </div>
+                <div class="modeButton">
+                    <p>Another</p>
+                </div>
+
+
             </div>
         </div>
-        <!-- <input type="range" min="0" max="100" value="0" class="brightnessSlider" id="brightness">
-        <p id="brightnessout"></p> -->
+        <div class="underPanelButtonContainer">
+            <div class="underPanelButton" , id="lightLeft">
+                <p>Left</p>
+            </div>
+            <div class="underPanelButton" , id="lightBoth">
+                <p>Both</p>
+            </div>
+            <div class="underPanelButton" , id="lightRight">
+                <p>Right</p>
+            </div>
+        </div>
     </div>
-
 </body>
 <script>
-    let redslider = document.getElementById("red");
-    let redout = document.getElementById("redout");
-    redout.innerText = redslider.value + "%";
-    redslider.oninput = function () {
-        redout.innerText = this.value + "%";
+
+    let redSlider = document.getElementById("redSlider");
+    let redOut = document.getElementById("redOut");
+    redOut.innerText = redSlider.value + "%";
+    redSlider.oninput = function () {
+        redOut.innerText = this.value + "%";
     }
-    let greenslider = document.getElementById("green");
-    let greenout = document.getElementById("greenout");
-    greenout.innerText = greenslider.value + "%";
-    greenslider.oninput = function () {
-        greenout.innerText = this.value + "%";
+    let greenSlider = document.getElementById("greenSlider");
+    let greenOut = document.getElementById("greenOut");
+    greenOut.innerText = greenSlider.value + "%";
+    greenSlider.oninput = function () {
+        greenOut.innerText = this.value + "%";
     }
-    let blueslider = document.getElementById("blue");
-    let blueout = document.getElementById("blueout");
-    blueout.innerText = blueslider.value + "%";
-    blueslider.oninput = function () {
-        blueout.innerText = this.value + "%";
+    let blueSlider = document.getElementById("blueSlider");
+    let blueOut = document.getElementById("blueOut");
+    blueOut.innerText = blueSlider.value + "%";
+    blueSlider.oninput = function () {
+        blueOut.innerText = this.value + "%";
     }
+    let brightnessSlider = document.getElementById("brightnessSlider");
+    let brightnessOut = document.getElementById("brightnessOut");
+    brightnessOut.innerText = brightnessSlider.value + "%";
+    brightnessSlider.oninput = function () {
+        brightnessOut.innerText = this.value + "%";
+    }
+
+    const unselected = "grey"
+    const selected = "rgb(33, 33, 33)"
+    const hovered = "rgb(59, 59, 59)"
+
+    let selectedLight = "Both"
+    let lightLeft = document.getElementById("lightLeft")
+    let lightRight = document.getElementById("lightRight")
+    let lightBoth = document.getElementById("lightBoth")
+
+    function selectBoth() {
+        selectedLight = "both";
+        lightLeft.style.backgroundColor = selected;
+        lightRight.style.backgroundColor = selected;
+    }
+
+    function selectLeft() {
+        selectedLight = "left";
+        lightLeft.style.backgroundColor = selected;
+        lightRight.style.backgroundColor = unselected;
+    }
+
+    function selectRight() {
+        selectedLight = "right";
+        lightLeft.style.backgroundColor = unselected;
+        lightRight.style.backgroundColor = selected;
+    }
+
+    lightBoth.addEventListener("click", selectBoth)
+    lightLeft.addEventListener("click", selectLeft)
+    lightRight.addEventListener("click", selectRight)
+
+    lightBoth.addEventListener("mouseover", function () {
+        lightBoth.style.backgroundColor = hovered;
+    })
+    lightLeft.addEventListener("mouseover", function () {
+        lightLeft.style.backgroundColor = hovered;
+    })
+    lightRight.addEventListener("mouseover", function () {
+        lightRight.style.backgroundColor = hovered;
+    })
+    lightBoth.addEventListener("mouseout", function () {
+        lightBoth.style.backgroundColor = unselected;
+    })
+    lightLeft.addEventListener("mouseout", function () {
+        if ((selectedLight === "left" || selectedLight === "both")) {
+            lightLeft.style.backgroundColor = selected;
+        }
+        else {
+            lightLeft.style.backgroundColor = unselected;
+        }
+    })
+    lightRight.addEventListener("mouseout", function () {
+        if (selectedLight === "right" || selectedLight === "both") {
+            lightRight.style.backgroundColor = selected;
+        }
+        else {
+            lightRight.style.backgroundColor = unselected;
+        }
+    })
 </script>
 
 </html>
